@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="items"
+                  type="com.amoon.recipelist.data.model.Drink"/>
+    </data>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:id="@+id/item_relative"
+                android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="8dp"
+                    android:id="@+id/Item"
+                    app:cardElevation="10dp"
+                    app:cardCornerRadius="10dp">
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/image"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:background="@drawable/no_image"
+                />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:id="@+id/name"
+                    android:text="@{items.strDrink}"
+                    app:fontFamily="@font/manropemedium"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+            />
+        </LinearLayout>
+</layout>

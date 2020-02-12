@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-allopen'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.amoon.recipelist"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "com.amoon.recipelist.AndroidTestRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
+    allOpen {
+         annotations("com.another.Annotation", "com.third.Annotation")
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$support"
+
+
+    // jetpack
+    implementation "androidx.appcompat:appcompat:$xsupport"
+    implementation "androidx.core:core-ktx:$xcore"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint"
+    implementation "androidx.lifecycle:lifecycle-extensions:$extensions"
+    implementation "androidx.recyclerview:recyclerview:$xsupport"
+    implementation "com.google.android.material:material:$xsupport"
+    implementation "androidx.paging:paging-runtime:$paging"
+    implementation "androidx.paging:paging-rxjava2:$paging"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
+
+    // http
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$interceptor"
+    implementation "com.squareup.okhttp3:okhttp:$interceptor"
+    implementation "com.facebook.stetho:stetho-okhttp3:$okhttp"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin"
+
+    // dagger
+    implementation "com.google.dagger:dagger:$dagger2_version"
+    implementation "com.google.dagger:dagger-android:$dagger2_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+    compileOnly "org.glassfish:javax.annotation:$annotation"
+
+
+    //Structure
+    implementation "android.arch.lifecycle:extensions:$extension"
+
+    //Design
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
+    implementation "com.airbnb.android:lottie:$lottie_version"
+    implementation "com.android.support:design:$support"
+    implementation("com.github.thekhaeng:pushdown-anim-click:$extension") {
+        exclude group: 'com.android.support'
+    }
+
+    // Tests
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin"
+    testImplementation "org.mockito:mockito-inline:$mockito_inline"
+    androidTestImplementation "android.arch.core:core-testing:$extension"
+    testImplementation "android.arch.core:core-testing:$extension"
+
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test.ext:junit:$extension"
+    androidTestImplementation "com.android.support.test:runner:$trunner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espresso"
+    androidTestImplementation "org.mockito:mockito-android:$mockito"
+    androidTestImplementation "android.arch.core:core-testing:$extension"
+    testImplementation "org.awaitility:awaitility:$awaitility"
+
+    androidTestUtil "androidx.test:orchestrator:$orchestrator"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockkotlin"
+    testImplementation "org.mockito:mockito-inline:$mockinline"
+    androidTestImplementation "org.mockito:mockito-android:$mockandroid"
+    androidTestImplementation "androidx.test:rules:$trules"
+
+}
